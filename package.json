@@ -1,0 +1,50 @@
+{
+  "name": "astro-icons",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Access thousands of icons as components on-demand in your astro projects.",
+  "author": "Panchao Wang <panchao626@outlook.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panchaow/astro-icons"
+  },
+  "keywords": [
+    "astro-integration"
+  ],
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./*": "./*",
+    "./astro": "./astro/index.ts",
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.mjs"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "dev": "pnpm --filter \"basic-example\" run dev",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "astro": "^3.5.3"
+  },
+  "dependencies": {
+    "@iconify/types": "^2.0.0",
+    "@iconify/utils": "^2.1.11"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^1.1.2",
+    "@types/node": "^20.9.0",
+    "astro": "^3.5.3",
+    "eslint": "^8.53.0",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "vite": "^4.5.0"
+  }
+}

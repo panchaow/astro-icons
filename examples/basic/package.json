@@ -1,0 +1,17 @@
+{
+  "name": "basic-example",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.1.141",
+    "astro": "^3.5.3",
+    "astro-icons": "workspace:^"
+  }
+}
