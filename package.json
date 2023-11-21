@@ -13,13 +13,20 @@
     "astro-integration"
   ],
   "exports": {
-    ".": "./dist/index.mjs",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
     "./*": "./*",
     "./types": {
       "types": "./dist/types.d.ts",
       "import": "./dist/types.mjs"
     }
   },
+  "files": [
+    "./dist",
+    "./types"
+  ],
   "engines": {
     "node": ">=18"
   },
