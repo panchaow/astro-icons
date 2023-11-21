@@ -15,7 +15,6 @@
   "exports": {
     ".": "./dist/index.mjs",
     "./*": "./*",
-    "./astro": "./astro/index.ts",
     "./types": {
       "types": "./dist/types.d.ts",
       "import": "./dist/types.mjs"
