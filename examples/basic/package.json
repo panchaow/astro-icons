@@ -10,8 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.5",
     "@iconify-json/lucide": "^1.1.141",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "astro": "^3.5.3",
-    "astro-icons": "workspace:^"
+    "astro-icons": "workspace:^",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

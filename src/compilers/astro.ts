@@ -1,9 +1,16 @@
 import { iconToSVG } from '@iconify/utils'
-import type { Compiler } from '../types.js'
+import type { Compiler, ResolvedOptions } from '../types.js'
 
 const astroCompiler: Compiler = {
-  compile(icon) {
-    const { attributes, body } = iconToSVG(icon)
+  async compile(iconifyIcon, { collection, icon }, options: ResolvedOptions) {
+    const result = iconToSVG(iconifyIcon)
+
+    if (!result)
+      return ''
+
+    const { attributes, body } = result
+
+    await options.customize(collection, icon, attributes)
 
     const typeDefs: string[] = []
     const defs: string[] = []

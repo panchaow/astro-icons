@@ -1,26 +1,16 @@
-import type { IconifyIcon } from '@iconify/types'
-import { getIconData } from '@iconify/utils'
-import { loadCollectionFromFS } from '@iconify/utils/lib/loader/fs'
+import { Effect, pipe } from 'effect'
+import { loadCustomIcon, loadIconFromFS } from './loaders/index.js'
 import type { ResolvedOptions } from './types.js'
 
-export async function loadIcon(
+export default function loadIcon(
   collection: string,
   icon: string,
   options: ResolvedOptions,
 ) {
-  const {
-    autoInstall,
-  } = options
-
-  let result: IconifyIcon | undefined
-
-  const iconSet = await loadCollectionFromFS(collection, autoInstall)
-
-  if (iconSet) {
-    const iconData = getIconData(iconSet, icon)
-    if (iconData)
-      result = iconData
-  }
-
-  return result
+  return pipe(
+    Effect.flatten(loadCustomIcon(collection, icon, options)),
+    Effect.orElse(
+      () => Effect.flatten(loadIconFromFS(collection, icon, options)),
+    ),
+  )
 }
