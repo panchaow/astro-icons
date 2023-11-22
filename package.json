@@ -39,10 +39,14 @@
   },
   "peerDependencies": {
     "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "astro": "^3.5.3"
   },
   "peerDependenciesMeta": {
     "@svgr/core": {
+      "optional": true
+    },
+    "@svgr/plugin-jsx": {
       "optional": true
     }
   },
@@ -56,6 +60,7 @@
     "@antfu/eslint-config": "^1.1.2",
     "@changesets/cli": "^2.26.2",
     "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@types/node": "^20.9.0",
     "astro": "^3.5.3",
     "eslint": "^8.53.0",
