@@ -32,6 +32,7 @@
   },
   "scripts": {
     "build": "unbuild",
+    "prepublishOnly": "pnpm run build",
     "dev": "pnpm --filter \"basic-example\" run dev",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
