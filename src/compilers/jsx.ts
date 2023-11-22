@@ -1,6 +1,7 @@
 import { iconToSVG } from '@iconify/utils'
-import { camelize } from '@iconify/utils/lib/misc/strings'
+import { pascalize } from '@iconify/utils/lib/misc/strings'
 import { importModule } from 'local-pkg'
+import { replaceIDs } from '../utils/replace-ids.js'
 import type { Compiler, ResolvedOptions } from '../types.js'
 
 const astroCompiler: Compiler = {
@@ -17,21 +18,38 @@ const astroCompiler: Compiler = {
       return ''
 
     const { attributes, body } = result
-    let svg = `<svg>${body}</svg>`
 
     await options.customize(collection, icon, attributes)
 
-    for (const [k, v] of Object.entries(attributes).reverse()) {
-      if (v !== undefined)
-        svg = svg.replace('<svg', `<svg ${k}="${v}"`)
-    }
+    /* Don't replace */
+    const { injectScripts, collectedIDs, svg: handled } = replaceIDs(body)
 
     const res = await svgr(
-      svg,
+      `<svg>${handled}</svg>`,
       {
         plugins: ['@svgr/plugin-jsx'],
+        svgProps: attributes,
+        replaceAttrValues: collectedIDs.reduce<Record<string, string>>((acc, id) => {
+          acc[id] = `{__id('${id}')}`
+          acc[`url(#${id})`] = `{'url(#'+__id('${id}')+')'}`
+          return acc
+        }, {}),
+        template: (variables: any, { tpl }: any) => {
+          return tpl`
+          ${variables.imports};
+
+          ${variables.interfaces};
+
+          const ${variables.componentName} = (${variables.props}) => {
+            ${injectScripts}
+            return ${variables.jsx}
+          };
+          
+          ${variables.exports};
+          `
+        },
       },
-      { componentName: camelize(`${collection}-${icon}`) },
+      { componentName: pascalize(`${collection}-${icon}`) },
     )
 
     return res
