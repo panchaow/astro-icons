@@ -1,5 +1,12 @@
 # basic-example
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - astro-icons@0.1.2
+
 ## 0.0.3
 
 ### Patch Changes
