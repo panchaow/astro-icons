@@ -1,16 +1,8 @@
-import { iconToSVG } from '@iconify/utils'
 import type { Compiler, ResolvedOptions } from '../types.js'
 import { replaceIDs } from '../utils/replace-ids.js'
 
 const astroCompiler: Compiler = {
-  async compile(iconifyIcon, { collection, icon }, options: ResolvedOptions) {
-    const result = iconToSVG(iconifyIcon)
-
-    if (!result)
-      return ''
-
-    const { attributes, body } = result
-
+  async compile({ attributes, body }, { collection, icon }, options: ResolvedOptions) {
     await options.customize(collection, icon, attributes)
 
     const { injectScripts, svg: handled } = replaceIDs(

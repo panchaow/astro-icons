@@ -1,23 +1,15 @@
-import { iconToSVG } from '@iconify/utils'
 import { pascalize } from '@iconify/utils/lib/misc/strings'
 import { importModule } from 'local-pkg'
 import { replaceIDs } from '../utils/replace-ids.js'
 import type { Compiler, ResolvedOptions } from '../types.js'
 
 const astroCompiler: Compiler = {
-  async compile(iconifyIcon, { collection, icon }, options: ResolvedOptions) {
+  async compile({ attributes, body }, { collection, icon }, options: ResolvedOptions) {
     const svgrCore = await importModule('@svgr/core')
     // check for v6/v7 transform (v7 on CJS it is in default), v5 default and previous versions
     const svgr = svgrCore.transform // v6 or v7 ESM
       || (svgrCore.default ? (svgrCore.default.transform /* v7 CJS */ ?? svgrCore.default) : svgrCore.default)
       || svgrCore
-
-    const result = iconToSVG(iconifyIcon)
-
-    if (!result)
-      return ''
-
-    const { attributes, body } = result
 
     await options.customize(collection, icon, attributes)
 

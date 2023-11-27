@@ -1,8 +1,9 @@
-import { Effect, pipe } from 'effect'
-import { loadCustomIcon, loadIconFromFS } from './loaders/index.js'
-import type { ResolvedOptions } from './types.js'
+import { Effect, Option, flow, pipe } from 'effect'
+import type { ResolvedOptions } from '../types.js'
+import { loadIconFromFS } from './fs.js'
+import { loadCustomIcon } from './custom.js'
 
-export default function loadIcon(
+export function loadIcon(
   collection: string,
   icon: string,
   options: ResolvedOptions,

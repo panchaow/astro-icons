@@ -22,7 +22,7 @@ export default defineConfig({
         // Optimize
         runSVGO(svg)
 
-        return svg.getIcon()
+        return svg.toMinifiedString()
       },
     },
   }), react()],
