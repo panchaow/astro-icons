@@ -1,5 +1,11 @@
 # astro-icons
 
+## 0.1.3
+
+### Patch Changes
+
+- 1ec05d1: Custom Icon Loader should return svg string now
+
 ## 0.1.2
 
 ### Patch Changes
