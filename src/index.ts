@@ -4,7 +4,7 @@ import type { AstroIntegration } from 'astro'
 import type { Plugin } from 'vite'
 import { resolveOptions } from './options.js'
 import type { Options, ResolvedOptions } from './types.js'
-import loadIcon from './loader.js'
+import { loadIcon } from './loader/loader.js'
 import { compilers } from './compilers/index.js'
 
 const ICON_MODULE_ID_RE = /virtual:icons(?=\/)/
@@ -84,11 +84,7 @@ function normalize(id: string) {
 }
 
 function genereteComponent(
-  info: {
-    collection: string
-    icon: string
-    ext: string
-  },
+  info: { collection: string; icon: string; ext: string },
   options: ResolvedOptions,
 ) {
   const { collection, icon, ext } = info
