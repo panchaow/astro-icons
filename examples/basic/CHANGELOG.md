@@ -1,5 +1,13 @@
 # basic-example
 
+## 0.0.5
+
+### Patch Changes
+
+- 1ec05d1: Custom Icon Loader should return svg string now
+- Updated dependencies [1ec05d1]
+  - astro-icons@0.1.3
+
 ## 0.0.4
 
 ### Patch Changes
